@@ -6499,6 +6499,11 @@ jest-resolve@^27.0.6:
     resolve "^1.20.0"
     slash "^3.0.0"
 
+jest-rspec-style@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/jest-rspec-style/-/jest-rspec-style-0.1.0.tgz#7601c295c37cbc89b536c033f9cbdd533c802f5c"
+  integrity sha512-0qYIDKF7BxQnIiSUJyQ4z1Uw6A9ZQVTgnzjsFpARIwS5D2hRsYqA2dBwFnWprv2P+Fis9D3J4B/Xm1QV7BpdEQ==
+
 jest-runner@^27.0.6:
   version "27.0.6"
   resolved "https://registry.yarnpkg.com/jest-runner/-/jest-runner-27.0.6.tgz#1325f45055539222bbc7256a6976e993ad2f9520"
