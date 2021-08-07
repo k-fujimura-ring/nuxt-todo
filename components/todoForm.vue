@@ -1,37 +1,48 @@
 <template lang="pug">
-  v-form.d-flex.align-center
-    v-text-field(
-      v-model="newTodo",
-      label="新しいTodo"
-    )
-    v-checkbox(
-      v-model="checked",
-      :label="'純正'"
-    )
-    v-btn.ml-3(
-      dark=true,
-      color="#33CCFF",
-      @click="onSubmit"
-    ) 確認
+  v-row
+    v-col
+      v-form.d-flex.align-center
+        v-text-field(
+          v-model="newTodo",
+          label="新しいTodo"
+        )
+        v-btn.ml-3.font-weight-black(
+          dark=true,
+          color="secondary",
+          :disabled="disabled"
+          @click="onAdd"
+        ) 追加する
 </template>
 <script lang="ts">
 import { 
   defineComponent,
   ref,
-  watch,
+  SetupContext,
+  computed,
  } from '@nuxtjs/composition-api'
-
 export default defineComponent({
-  setup() {
+  setup(_, context: SetupContext) {
     const newTodo = ref<string>('')
-    const checked = ref<boolean>(false)
-    const onSubmit = () => {
+
+    const onAdd = () => {
+      if (newTodo.value) {
+        context.emit("addTodo", newTodo.value)
+        newTodo.value = ''
+      } else {
+        console.log('からだわ。。。')
+      }
     }
-     
+
+    const disabled = computed(
+      () => {
+        return !newTodo.value
+      }
+    )
+
     return {
       newTodo,
-      checked,
-      onSubmit
+      onAdd,
+      disabled
     }
   },
 })
