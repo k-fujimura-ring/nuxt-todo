@@ -11,11 +11,11 @@
     )
       v-col
         v-btn.mb-4(
-          block,
           :color="todo.color",
-          elevation="6",
+          :disabled="todo.disabled",
+          block,
           large,
-          :disabled="todo.disabled"
+          elevation="6",
           @click="onClick(index)"
         ) {{ todo.text }} 
 </template>
