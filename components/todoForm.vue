@@ -20,6 +20,7 @@ import {
   SetupContext,
   computed,
  } from '@nuxtjs/composition-api'
+ 
 export default defineComponent({
   setup(_, context: SetupContext) {
     const newTodo = ref<string>('')
@@ -28,8 +29,6 @@ export default defineComponent({
       if (newTodo.value) {
         context.emit("addTodo", newTodo.value)
         newTodo.value = ''
-      } else {
-        console.log('からだわ。。。')
       }
     }
 

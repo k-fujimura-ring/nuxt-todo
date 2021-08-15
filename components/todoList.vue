@@ -27,6 +27,7 @@ import {
   SetupContext,
 } from '@nuxtjs/composition-api'
 
+
 interface Props {
   todoList: object[]
 }
@@ -39,7 +40,6 @@ export default defineComponent({
   },
   setup(props: Props, context: SetupContext) {
     const onClick = (index: number) => {
-      console.log(context)
       context.emit("changeColor", index);
     }
     return {
