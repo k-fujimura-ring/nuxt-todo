@@ -2,7 +2,15 @@ import { mount } from '@vue/test-utils'
 import Index from '@/pages/todos/index.vue'
 
 describe('todoForm', () => {
-  const component = mount(Index)
+  const component = mount(Index,{
+    created() {
+      this.$vuetify.lang = {
+        t: () => {},
+      };
+      this.$vuetify.theme = { dark: false };
+    }
+  })
+
   const defaultColor = "#66cccc"
   const todoList = [
     {

@@ -26,12 +26,7 @@ import {
   ref,
   SetupContext,
 } from '@nuxtjs/composition-api'
-
-
-interface Props {
-  todoList: object[]
-}
-
+import { Props } from '@/models/todo'
 export default defineComponent({
   props: {
     todoList: {

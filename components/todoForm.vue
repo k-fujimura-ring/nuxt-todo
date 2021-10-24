@@ -2,8 +2,13 @@
   v-row
     v-col
       v-form.d-flex.align-center
-        v-text-field(
-          v-model="newTodo",
+        v-select(
+          :items="dropDownList",
+          v-model="newTodoModels.category",
+          label="カテゴリー"
+        )
+        v-text-field.ml-3(
+          v-model="newTodoModels.text",
           label="新しいTodo"
         )
         v-btn.ml-3.font-weight-black(
@@ -16,32 +21,40 @@
 <script lang="ts">
 import { 
   defineComponent,
-  ref,
   SetupContext,
   computed,
+  reactive,
  } from '@nuxtjs/composition-api'
- 
+ import { newTodoModels } from '@/models/todo'
+
 export default defineComponent({
   setup(_, context: SetupContext) {
-    const newTodo = ref<string>('')
+    const newTodoModels = reactive<newTodoModels>({
+      text: '',
+      category: '',
+    })
 
     const onAdd = () => {
-      if (newTodo.value) {
-        context.emit("addTodo", newTodo.value)
-        newTodo.value = ''
+      if (newTodoModels.text && newTodoModels.category) {
+        context.emit("addTodo", newTodoModels)
+        newTodoModels.text = ''
+        newTodoModels.category = ''
       }
     }
 
     const disabled = computed(
       () => {
-        return !newTodo.value
+        return !newTodoModels.text && !newTodoModels.category
       }
     )
 
+    const dropDownList :string[] = ["買い物", "あとでやるもの", "その他"]
+
     return {
-      newTodo,
+      newTodoModels,
       onAdd,
-      disabled
+      disabled,
+      dropDownList
     }
   },
 })
